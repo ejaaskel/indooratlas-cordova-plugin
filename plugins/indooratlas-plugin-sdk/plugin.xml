@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    id="indooratlas-plugin-sdk"
+    version="2.0.0">
+    <name>IndooratlasSdk</name>
+    <description>Indooratlas SDK</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,camera</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-camera.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320645</issue>
+
+    <js-module src="www/Indooratlas.js" name="indooratlas">
+        <clobbers target="navigator.indooratlas" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IndoorAtlas">
+                <param name="android-package" value="com.indooratlas.sdk.IndoorAtlas"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>    
+			<uses-permission android:name="android.permission.INTERNET"/>    
+			<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>    
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+			
+			<uses-feature android:name="android.hardware.sensor.accelerometer"
+			              android:required="false" />	
+			<uses-feature android:name="android.hardware.sensor.android.hardware.sensor.compass"
+			              android:required="false" />
+			<uses-feature android:name="android.hardware.sensor.gyroscope"
+			              android:required="false" />	
+			<uses-feature android:name="android.hardware.sensor.wifi"
+			              android:required="true" />
+			
+		</config-file>	
+		
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+				<service android:name="com.indooratlas.android.sdk.IALocationService"
+			  	             android:label="IALocationService"
+			  	             android:exported="false"/>
+				
+				<meta-data
+			        android:name="com.indooratlas.android.sdk.API_KEY"
+			        android:value="0d8f7d59-a2e8-4b6d-badc-b71c458fc600"/>
+			    <meta-data
+			        android:name="com.indooratlas.android.sdk.API_SECRET"
+			        android:value="H%ddWn01Q4BaQRo0Aw0T!2BwVFEsz5L!WTBPoYjF3Qx4Spxpd83l2U3UzxZB68HKLJZaxztKtHdfefb3JZwsF(UjpvYn%%)iS%bfUzg9U4MTS7QTublNptB62kl26hI5"/>
+				
+        </config-file>
+
+        
+        <source-file src="src/android/IndoorAtlas.java" target-dir="src/org/indooratlas/sdk"></source-file>
+		<source-file src="src/android/libs/indooratlas-android-sdk-2.0.0-beta.jar" target-dir="libs"></source-file>
+        
+
+     </platform>
+
+</plugin>
