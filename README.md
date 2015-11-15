@@ -1,1 +1,2 @@
 NOT OFFICIAL PLUGIN
+Testing how to integrate Indooratlas SDK to Apache Cordova. Currently including the JAR-file to Android works and some simple calls can be made to the SDK (Check Indooratlas.java). However, most of the functionality isn't there and it's not tested well.
